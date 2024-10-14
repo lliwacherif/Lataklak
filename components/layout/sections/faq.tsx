@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import RegisterButton from "@/components/ui/register";
 
 interface FAQProps {
   question: string;
@@ -45,21 +46,21 @@ const FAQList: FAQProps[] = [
 
 export const FAQSection = () => {
   return (
-    <section id="faq" className="container md:w-[700px] py-24 sm:py-32">
-      <div className="text-center mb-8">
-        <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
+    <section id='faq' className='container md:w-[700px] py-24 sm:py-32'>
+      <div className='text-center mb-8'>
+        <h2 className='text-lg text-primary text-center mb-2 tracking-wider'>
           FAQS
         </h2>
 
-        <h2 className="text-3xl md:text-4xl text-center font-bold">
+        <h2 className='text-3xl md:text-4xl text-center font-bold'>
           Common Questions
         </h2>
       </div>
 
-      <Accordion type="single" collapsible className="AccordionRoot">
+      <Accordion type='single' collapsible className='AccordionRoot'>
         {FAQList.map(({ question, answer, value }) => (
           <AccordionItem key={value} value={value}>
-            <AccordionTrigger className="text-left">
+            <AccordionTrigger className='text-left'>
               {question}
             </AccordionTrigger>
 
@@ -67,6 +68,9 @@ export const FAQSection = () => {
           </AccordionItem>
         ))}
       </Accordion>
+      <div className='w-full flex items-center justify-center'>
+        <RegisterButton />
+      </div>
     </section>
   );
 };

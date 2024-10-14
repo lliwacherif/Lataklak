@@ -14,6 +14,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import RegisterButton from "@/components/ui/register";
 import { Star } from "lucide-react";
 
 interface ReviewProps {
@@ -78,13 +79,13 @@ const reviewList: ReviewProps[] = [
 
 export const TestimonialSection = () => {
   return (
-    <section id="testimonials" className="container py-24 sm:py-32">
-      <div className="text-center mb-8">
-        <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
+    <section id='testimonials' className='container py-24 sm:py-32'>
+      <div className='text-center mb-8'>
+        <h2 className='text-lg text-primary text-center mb-2 tracking-wider'>
           Testimonials
         </h2>
 
-        <h2 className="text-3xl md:text-4xl text-center font-bold mb-4">
+        <h2 className='text-3xl md:text-4xl text-center font-bold mb-4'>
           Hear What Our 1000+ Clients Say
         </h2>
       </div>
@@ -93,38 +94,38 @@ export const TestimonialSection = () => {
         opts={{
           align: "start",
         }}
-        className="relative w-[80%] sm:w-[90%] lg:max-w-screen-xl mx-auto"
+        className='relative w-[80%] sm:w-[90%] lg:max-w-screen-xl mx-auto'
       >
         <CarouselContent>
           {reviewList.map((review) => (
             <CarouselItem
               key={review.name}
-              className="md:basis-1/2 lg:basis-1/3"
+              className='md:basis-1/2 lg:basis-1/3'
             >
-              <Card className="bg-muted/50 dark:bg-card">
-                <CardContent className="pt-6 pb-0">
-                  <div className="flex gap-1 pb-6">
-                    <Star className="size-4 fill-primary text-primary" />
-                    <Star className="size-4 fill-primary text-primary" />
-                    <Star className="size-4 fill-primary text-primary" />
-                    <Star className="size-4 fill-primary text-primary" />
-                    <Star className="size-4 fill-primary text-primary" />
+              <Card className='bg-muted/50 dark:bg-card'>
+                <CardContent className='pt-6 pb-0'>
+                  <div className='flex gap-1 pb-6'>
+                    <Star className='size-4 fill-primary text-primary' />
+                    <Star className='size-4 fill-primary text-primary' />
+                    <Star className='size-4 fill-primary text-primary' />
+                    <Star className='size-4 fill-primary text-primary' />
+                    <Star className='size-4 fill-primary text-primary' />
                   </div>
                   {`"${review.comment}"`}
                 </CardContent>
 
                 <CardHeader>
-                  <div className="flex flex-row items-center gap-4">
+                  <div className='flex flex-row items-center gap-4'>
                     <Avatar>
                       <AvatarImage
-                        src="https://avatars.githubusercontent.com/u/75042455?v=4"
-                        alt="radix"
+                        src='https://avatars.githubusercontent.com/u/75042455?v=4'
+                        alt='radix'
                       />
                       <AvatarFallback>SV</AvatarFallback>
                     </Avatar>
 
-                    <div className="flex flex-col">
-                      <CardTitle className="text-lg">{review.name}</CardTitle>
+                    <div className='flex flex-col'>
+                      <CardTitle className='text-lg'>{review.name}</CardTitle>
                       <CardDescription>{review.userName}</CardDescription>
                     </div>
                   </div>
@@ -136,6 +137,9 @@ export const TestimonialSection = () => {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
+      <div className='w-full mt-2 flex items-center justify-center'>
+        <RegisterButton />
+      </div>
     </section>
   );
 };

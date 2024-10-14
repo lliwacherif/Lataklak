@@ -24,21 +24,21 @@ interface PlanProps {
 }
 
 const plans: PlanProps[] = [
-  {
-    title: "Free",
-    popular: 0,
-    price: 0,
-    description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
-    buttonText: "Start Free Trial",
-    benefitList: [
-      "1 team member",
-      "1 GB storage",
-      "Upto 2 pages",
-      "Community support",
-      "AI assistance",
-    ],
-  },
+  // {
+  //   title: "Free",
+  //   popular: 0,
+  //   price: 0,
+  //   description:
+  //     "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
+  //   buttonText: "Start Free Trial",
+  //   benefitList: [
+  //     "1 team member",
+  //     "1 GB storage",
+  //     "Upto 2 pages",
+  //     "Community support",
+  //     "AI assistance",
+  //   ],
+  // },
   {
     title: "Premium",
     popular: 1,
@@ -54,39 +54,39 @@ const plans: PlanProps[] = [
       "AI assistance",
     ],
   },
-  {
-    title: "Enterprise",
-    popular: 0,
-    price: 120,
-    description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
-    buttonText: "Contact US",
-    benefitList: [
-      "10 team member",
-      "20 GB storage",
-      "Upto 10 pages",
-      "Phone & email support",
-      "AI assistance",
-    ],
-  },
+  // {
+  //   title: "Enterprise",
+  //   popular: 0,
+  //   price: 120,
+  //   description:
+  //     "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
+  //   buttonText: "Contact US",
+  //   benefitList: [
+  //     "10 team member",
+  //     "20 GB storage",
+  //     "Upto 10 pages",
+  //     "Phone & email support",
+  //     "AI assistance",
+  //   ],
+  // },
 ];
 
 export const PricingSection = () => {
   return (
-    <section className="container py-24 sm:py-32">
-      <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
+    <section className='container py-24 sm:py-32'>
+      <h2 className='text-lg text-primary text-center mb-2 tracking-wider'>
         Pricing
       </h2>
 
-      <h2 className="text-3xl md:text-4xl text-center font-bold mb-4">
+      <h2 className='text-3xl md:text-4xl text-center font-bold mb-4'>
         Get unlimitted access
       </h2>
 
-      <h3 className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground pb-14">
+      <h3 className='md:w-1/2 mx-auto text-xl text-center text-muted-foreground pb-14'>
         Lorem ipsum dolor sit amet consectetur adipisicing reiciendis.
       </h3>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4">
+      <div className='flex items-center justify-center'>
         {plans.map(
           ({ title, popular, price, description, buttonText, benefitList }) => (
             <Card
@@ -98,23 +98,23 @@ export const PricingSection = () => {
               }
             >
               <CardHeader>
-                <CardTitle className="pb-2">{title}</CardTitle>
+                <CardTitle className='pb-2'>{title}</CardTitle>
 
-                <CardDescription className="pb-4">
+                <CardDescription className='pb-4'>
                   {description}
                 </CardDescription>
 
                 <div>
-                  <span className="text-3xl font-bold">${price}</span>
-                  <span className="text-muted-foreground"> /month</span>
+                  <span className='text-3xl font-bold'>${price}</span>
+                  <span className='text-muted-foreground'> /month</span>
                 </div>
               </CardHeader>
 
-              <CardContent className="flex">
-                <div className="space-y-4">
+              <CardContent className='flex'>
+                <div className='space-y-4'>
                   {benefitList.map((benefit) => (
-                    <span key={benefit} className="flex">
-                      <Check className="text-primary mr-2" />
+                    <span key={benefit} className='flex'>
+                      <Check className='text-primary mr-2' />
                       <h3>{benefit}</h3>
                     </span>
                   ))}
@@ -126,7 +126,7 @@ export const PricingSection = () => {
                   variant={
                     popular === PopularPlan?.YES ? "default" : "secondary"
                   }
-                  className="w-full"
+                  className='w-full'
                 >
                   {buttonText}
                 </Button>
