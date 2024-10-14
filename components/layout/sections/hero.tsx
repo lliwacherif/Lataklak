@@ -6,9 +6,16 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export const HeroSection = () => {
   const { theme } = useTheme();
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  }, []);
+
   return (
     <section className='container w-full'>
       <div className='grid place-items-center lg:max-w-screen-xl gap-8 mx-auto py-20 md:py-32'>
@@ -39,7 +46,7 @@ export const HeroSection = () => {
               variant='secondary'
               className='w-5/6 md:w-1/4 font-bold'
             >
-              <Link href='#'>Plus d'info</Link>
+              <Link href='#'>Plus d{"'"}info</Link>
             </Button>
           </div>
         </div>
@@ -47,7 +54,7 @@ export const HeroSection = () => {
         <div className='relative group mt-14'>
           <div className='w-full md:w-[1200px] mx-auto rounded-lg relative rouded-lg leading-none flex items-center'>
             <iframe
-              height={window.innerWidth > 720 ? "840" : "270"}
+              height={width > 720 ? "840" : "270"}
               style={{ borderRadius: 25, borderWidth: 0 }}
               className='w-full md:w-[1200px] mx-auto rounded-lg relative rouded-lg leading-none flex items-center border-0'
               src='https://www.youtube.com/embed/xZWq1rmIma4?si=-7l1K5FKNPyabjew'
