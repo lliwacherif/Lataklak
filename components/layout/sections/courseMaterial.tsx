@@ -81,7 +81,7 @@ export default function CourseMaterial() {
             </div>
           </div>
           <h2 className='text-2xl text-center text-white mb-2 tracking-wider'>
-            Et bien d'autres chapitres que tu découvriras en nous rejoignant
+            Et bien d{"'"}autres chapitres que tu découvriras en nous rejoignant
           </h2>
           <div className='w-full mt-5 flex items-center justify-center'>
             <RegisterButton />

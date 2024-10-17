@@ -206,7 +206,9 @@ export const ContactSection = () => {
                           </FormControl>
                           <SelectContent>
                             {tunisianGovernorates.map((g) => (
-                              <SelectItem value={g}>{g}</SelectItem>
+                              <SelectItem key={g} value={g}>
+                                {g}
+                              </SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
