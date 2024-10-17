@@ -28,6 +28,32 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
+const tunisianGovernorates = [
+  "Ariana",
+  "Beja",
+  "Ben Arous",
+  "Bizerte",
+  "Gabes",
+  "Gafsa",
+  "Jendouba",
+  "Kairouan",
+  "Kasserine",
+  "Kef",
+  "Mahdia",
+  "Manouba",
+  "Mednine",
+  "Monastir",
+  "Nabeul",
+  "Sfax",
+  "Sidi Bouzid",
+  "Siliana",
+  "Sousse",
+  "Tataouine",
+  "Tozeur",
+  "Tunis",
+  "Zaghouan",
+];
+
 const formSchema = z.object({
   firstName: z.string().min(2).max(255),
   lastName: z.string().min(2).max(255),
@@ -43,7 +69,7 @@ export const ContactSection = () => {
       firstName: "",
       lastName: "",
       email: "",
-      subject: "Web Development",
+      subject: "Tunis Centre Ville",
       message: "",
     },
   });
@@ -51,22 +77,25 @@ export const ContactSection = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     const { firstName, lastName, email, subject, message } = values;
     console.log(values);
-
-    const mailToLink = `mailto:leomirandadev@gmail.com?subject=${subject}&body=Hello I am ${firstName} ${lastName}, my Email is ${email}. %0D%0A${message}`;
-
-    window.location.href = mailToLink;
   }
 
   return (
-    <section id='contact' className='container py-24 sm:py-32'>
-      <section className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+    <section
+      id='contact'
+      className='container flex items-center justify-center py-24 sm:py-32'
+    >
+      <section
+        // className=''
+        className='lg:w-4/6 '
+      >
         <div>
           <div className='mb-4'>
-            {/* <h2 className="text-lg text-primary mb-2 tracking-wider">
-              Contact
-            </h2> */}
-
-            <h2 className='text-3xl md:text-4xl font-bold'>Connect With Us</h2>
+            <h2 className='text-lg text-primary mb-2 tracking-wider'>
+              Rejoignez nous
+            </h2>
+            <h2 className='text-3xl text-right md:text-4xl font-bold'>
+              سجل معنا
+            </h2>
           </div>
         </div>
 
@@ -84,9 +113,9 @@ export const ContactSection = () => {
                     name='firstName'
                     render={({ field }) => (
                       <FormItem className='w-full'>
-                        <FormLabel>First Name</FormLabel>
+                        <FormLabel>Nom</FormLabel>
                         <FormControl>
-                          <Input placeholder='Leopoldo' {...field} />
+                          <Input placeholder='Foulen Fouleni' {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -97,9 +126,9 @@ export const ContactSection = () => {
                     name='lastName'
                     render={({ field }) => (
                       <FormItem className='w-full'>
-                        <FormLabel>Last Name</FormLabel>
+                        <FormLabel>Numéro De Téléphone</FormLabel>
                         <FormControl>
-                          <Input placeholder='Miranda' {...field} />
+                          <Input placeholder='99999999' {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -133,30 +162,24 @@ export const ContactSection = () => {
                     name='subject'
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Subject</FormLabel>
+                        <FormLabel>Occupation</FormLabel>
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder='Select a subject' />
+                              <SelectValue placeholder='Gouvernerat' />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value='Web Development'>
-                              Web Development
+                            <SelectItem value='Freelancer'>
+                              Freelancer
                             </SelectItem>
-                            <SelectItem value='Mobile Development'>
-                              Mobile Development
+                            <SelectItem value='BusinessOwner'>
+                              Chef De Projet
                             </SelectItem>
-                            <SelectItem value='Figma Design'>
-                              Figma Design
-                            </SelectItem>
-                            <SelectItem value='REST API'>REST API</SelectItem>
-                            <SelectItem value='FullStack Project'>
-                              FullStack Project
-                            </SelectItem>
+                            <SelectItem value='Student'>Etudiant</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -168,25 +191,50 @@ export const ContactSection = () => {
                 <div className='flex flex-col gap-1.5'>
                   <FormField
                     control={form.control}
-                    name='message'
+                    name='subject'
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Message</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            rows={5}
-                            placeholder='Your message...'
-                            className='resize-none'
-                            {...field}
-                          />
-                        </FormControl>
-
+                        <FormLabel>Gouvernerat</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder='Gouvernerat' />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {tunisianGovernorates.map((g) => (
+                              <SelectItem value={g}>{g}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
 
+                <div className='flex flex-col gap-1.5'>
+                  <FormField
+                    control={form.control}
+                    name='email'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Adresse</FormLabel>
+                        <FormControl>
+                          <Input
+                            type='text'
+                            placeholder='Tunis, Centre Ville'
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
                 <Button className='mt-4'>Register</Button>
               </form>
             </Form>

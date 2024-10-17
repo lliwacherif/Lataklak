@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/carousel";
 import RegisterButton from "@/components/ui/register";
 import { Star } from "lucide-react";
+import Image from "next/image";
 
 interface ReviewProps {
   image: string;
@@ -27,54 +28,47 @@ interface ReviewProps {
 
 const reviewList: ReviewProps[] = [
   {
-    image: "https://github.com/shadcn.png",
-    name: "John Doe",
-    userName: "Product Manager",
-    comment:
-      "Wow NextJs + Shadcn is awesome!. This is awesome lets me change colors, fonts and images to match my brand identity. ",
-    rating: 5.0,
+    image: "",
+    name: "Sadok B'z",
+    userName: `E-commerçant tunisien`,
+    comment: `J’ai eu l’honneur de participer à votre formation sur le thème de la publicité facebook
+  Cette formation m’a permis de consolider mes connaissances et de confirmer ma passion pour le domaine de publicité
+  Merci bcp Rayane Daghar`,
+    rating: 4.8,
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "Sophia Collins",
-    userName: "Cybersecurity Analyst",
-    comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. ",
-    rating: 4.8,
+    image: "/test1.png",
+    name: `BK`,
+    userName: "E-commerçant tunisien",
+    comment: `قعدت 48 ساعة بعد الفورماسيون معطيتش رأيي حبيت نجرب الي تعلمناه
+  بعد 24 ساعة فهمت إلى انا نجم نستهلِك ثلث الوقت الي كنت نعديه على الPC قبل و نحقق نتائج خير
+  و بعد 48 ساعة استنتجت الي انا كنت نخسر في برشا فلوس على خاطر كنت مش فاهم في نهارين تحسنو النتائج و نتصور نجم نزيد نحسن اكثر
+  `,
+    rating: 5.0,
   },
 
   {
-    image: "https://github.com/shadcn.png",
-    name: "Adam Johnson",
-    userName: "Chief Technology Officer",
-    comment:
-      "Lorem ipsum dolor sit amet,exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    rating: 4.9,
+    image: "",
+    name: "Ghaya Zouèghi",
+    userName: `Etudiante`,
+    comment: `Je veux remercier Rayane Daghar pour la qualité de sa formation concernant 'la publicité sur Facebook', vraiment la formation a été très solide, et pertinente et complète qui reflète les qualité et les compétences du formateur.
+Juste après la formation, en appliquant ce que j'ai appris, j'ai lancé seulement ma propre campagne et j'étais surprise par les performances de la publicité.`,
+    rating: 4.8,
   },
   {
-    image: "https://github.com/shadcn.png",
-    name: "Ethan Parker",
-    userName: "Data Scientist",
-    comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod labore et dolore magna aliqua. Ut enim ad minim veniam.",
-    rating: 5.0,
+    image: "/test4.png",
+    name: "Boutheina Tounsi",
+    userName: ``,
+    comment: ``,
+    rating: 4.8,
   },
-  {
-    image: "https://github.com/shadcn.png",
-    name: "Ava Mitchell",
-    userName: "IT Project Manager",
-    comment:
-      "Lorem ipsum dolor sit amet, tempor incididunt  aliqua. Ut enim ad minim veniam, quis nostrud incididunt consectetur adipiscing elit.",
-    rating: 5.0,
-  },
-  {
-    image: "https://github.com/shadcn.png",
-    name: "Isabella Reed",
-    userName: "DevOps Engineer",
-    comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    rating: 4.9,
-  },
+  // {
+  //   image: "/test5.png",
+  //   name: "Amal Khlif",
+  //   userName: ``,
+  //   comment: ``,
+  //   rating: 4.8,
+  // },
 ];
 
 export const TestimonialSection = () => {
@@ -82,11 +76,11 @@ export const TestimonialSection = () => {
     <section id='testimonials' className='container py-24 sm:py-32'>
       <div className='text-center mb-8'>
         <h2 className='text-lg text-primary text-center mb-2 tracking-wider'>
-          Testimonials
+          Témoignages
         </h2>
 
         <h2 className='text-3xl md:text-4xl text-center font-bold mb-4'>
-          Hear What Our 1000+ Clients Say
+          les avis de nos étudiants
         </h2>
       </div>
 
@@ -101,6 +95,7 @@ export const TestimonialSection = () => {
             <CarouselItem
               key={review.name}
               className='md:basis-1/2 lg:basis-1/3'
+              dir={"rtl"}
             >
               <Card className='bg-muted/50 dark:bg-card'>
                 <CardContent className='pt-6 pb-0'>
@@ -111,17 +106,18 @@ export const TestimonialSection = () => {
                     <Star className='size-4 fill-primary text-primary' />
                     <Star className='size-4 fill-primary text-primary' />
                   </div>
-                  {`"${review.comment}"`}
+                  {review.image.length == 0 ? (
+                    <div>{review.comment}</div>
+                  ) : (
+                    <Image alt='' src={review.image} width={300} height={100} />
+                  )}
                 </CardContent>
 
                 <CardHeader>
                   <div className='flex flex-row items-center gap-4'>
                     <Avatar>
-                      <AvatarImage
-                        src='https://avatars.githubusercontent.com/u/75042455?v=4'
-                        alt='radix'
-                      />
-                      <AvatarFallback>SV</AvatarFallback>
+                      <AvatarImage src='' alt='radix' />
+                      <AvatarFallback>{review.name[0]}</AvatarFallback>
                     </Avatar>
 
                     <div className='flex flex-col'>

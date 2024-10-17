@@ -14,32 +14,36 @@ interface FAQProps {
 
 const FAQList: FAQProps[] = [
   {
-    question: "Is this Awesome bla bla?",
-    answer: "Yes. It is a awesome bla bla bla.",
+    question: "شكون باش يقريني ؟",
+    answer: `ريان دغار هو من أكبر المسوقين في تونس و خبير في مجال الsponsoring بعد سنوات خبرة بين خدمة مع علامات تجارية محترمين في تونس والي وصل معاهم لنتائج مبهرة 
+وبعد سنوات من دراسة الفورماسيونات الأجنبية الي تحتوي على معلومات تعتبر مجهولة في تونس
+وبعد جهد كبير من محاولة توظيف المعلومات هذي بش تناسب السوق التونسية
+ريان دغار يوصل للتوليفة المثالية بش يحقق أقوى نتائج ممكنة. يقدمهالكم اليوم في شكل مجموعة فيديوات تقراهم انولاين وقت ما انت تحب. 
+`,
     value: "item-1",
   },
   {
-    question: "Duis aute irure dolor in reprehenderit in voluptate velit?",
+    question: "علاش فيديوهات مسجلة ؟",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam consectetur sapiente, iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+      "على خاطر وقتك ثمين تنجم تقرى الدورة متاعنا فين متحب ووقت متحب و تعاودها قد متحب",
     value: "item-2",
   },
   {
-    question:
-      "Lorem ipsum dolor sit amet Consectetur natus dolor minus quibusdam?",
+    question: "قداش مدة الدورة ؟",
     answer:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore qui nostrum reiciendis veritatis.",
+      "تدوم أكثر من 8 ساعات و أغلب تلامذتنا يكملوها في 3 أسابيع و يبقى عندك access مدى الحياة",
     value: "item-3",
   },
   {
-    question: "Excepteur sint occaecat cupidata non proident sunt?",
-    answer: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    question: "كيفاش طريقة الخلاص ؟",
+    answer:
+      "تسجل معانا، نكلموك نتأكدو معاك ثم نبعثولك وصل الخلاص و معاهم ورقة فيها معلومات الوصول للمنصة متاعنا و تخلص من دارك cash",
     value: "item-4",
   },
   {
-    question:
-      "Enim ad minim veniam, quis nostrud exercitation ullamco laboris?",
-    answer: "consectetur adipisicing elit. Sint labore.",
+    question: "نجم نخلص online ؟",
+    answer:
+      "أي تنجم تخلص من دارك فقط وقت نكلموك على التأكيد إختار خاصية الخلاص online و نحنا نتكفلو بالبقية",
     value: "item-5",
   },
 ];
@@ -53,13 +57,13 @@ export const FAQSection = () => {
         </h2>
 
         <h2 className='text-3xl md:text-4xl text-center font-bold'>
-          Common Questions
+          الأسئلة اللي ديما تطرحوها
         </h2>
       </div>
 
       <Accordion type='single' collapsible className='AccordionRoot'>
         {FAQList.map(({ question, answer, value }) => (
-          <AccordionItem key={value} value={value}>
+          <AccordionItem dir='rtl' key={value} value={value}>
             <AccordionTrigger className='text-left'>
               {question}
             </AccordionTrigger>
