@@ -9,6 +9,7 @@ import { Building2, Clock, Mail, Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import {
   Form,
   FormControl,
@@ -27,6 +28,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { useRouter } from "next/navigation";
 
 const tunisianGovernorates = [
   "Ariana",
@@ -55,28 +57,43 @@ const tunisianGovernorates = [
 ];
 
 const formSchema = z.object({
-  firstName: z.string().min(2).max(255),
-  lastName: z.string().min(2).max(255),
+  name: z.string().min(2).max(255),
+  phone: z.string().min(8).max(12),
   email: z.string().email(),
-  subject: z.string().min(2).max(255),
-  message: z.string(),
+  adress: z.string().min(2).max(255),
+  occupation: z.string().min(2).max(255),
+  city: z.string().min(2).max(255),
 });
 
+const extractReferrer = (url: string): string | null => {
+  const regex = /[?&]referer=([^&]+)/;
+  const match = url.match(regex);
+  return match ? decodeURIComponent(match[1]) : null;
+};
+
 export const ContactSection = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      name: "",
+      phone: "",
       email: "",
-      subject: "Tunis Centre Ville",
-      message: "",
+      adress: "Tunis Centre Ville",
+      occupation: "",
+      city: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const { firstName, lastName, email, subject, message } = values;
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const { name, phone, email, adress, occupation, city } = values;
+    const referrer = extractReferrer(window.location.href);
+    console.log(referrer);
+    const req = await axios.post(`/api/submit`, { ...values, referrer });
+
+    if (req.status == 200) {
+      router.push("/thanks");
+    }
   }
 
   return (
@@ -110,7 +127,7 @@ export const ContactSection = () => {
                 <div className='flex flex-col md:!flex-row gap-8'>
                   <FormField
                     control={form.control}
-                    name='firstName'
+                    name='name'
                     render={({ field }) => (
                       <FormItem className='w-full'>
                         <FormLabel>Nom</FormLabel>
@@ -123,12 +140,16 @@ export const ContactSection = () => {
                   />
                   <FormField
                     control={form.control}
-                    name='lastName'
+                    name='phone'
                     render={({ field }) => (
                       <FormItem className='w-full'>
                         <FormLabel>Numéro De Téléphone</FormLabel>
                         <FormControl>
-                          <Input placeholder='99999999' {...field} />
+                          <Input
+                            type='number'
+                            placeholder='99999999'
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -159,7 +180,7 @@ export const ContactSection = () => {
                 <div className='flex flex-col gap-1.5'>
                   <FormField
                     control={form.control}
-                    name='subject'
+                    name='occupation'
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Occupation</FormLabel>
@@ -169,17 +190,18 @@ export const ContactSection = () => {
                         >
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder='Gouvernerat' />
+                              <SelectValue placeholder='Occupation' />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
                             <SelectItem value='Freelancer'>
                               Freelancer
                             </SelectItem>
-                            <SelectItem value='BusinessOwner'>
+                            <SelectItem value='Chef De projet'>
                               Chef De Projet
                             </SelectItem>
-                            <SelectItem value='Student'>Etudiant</SelectItem>
+                            <SelectItem value='Employé'>Employé</SelectItem>
+                            <SelectItem value='Etudiant'>Etudiant</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -191,7 +213,7 @@ export const ContactSection = () => {
                 <div className='flex flex-col gap-1.5'>
                   <FormField
                     control={form.control}
-                    name='subject'
+                    name='city'
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Gouvernerat</FormLabel>
@@ -221,7 +243,7 @@ export const ContactSection = () => {
                 <div className='flex flex-col gap-1.5'>
                   <FormField
                     control={form.control}
-                    name='email'
+                    name='adress'
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Adresse</FormLabel>

@@ -6,6 +6,7 @@ import { FAQSection } from "@/components/layout/sections/faq";
 import { FeaturesSection } from "@/components/layout/sections/features";
 import { FooterSection } from "@/components/layout/sections/footer";
 import { HeroSection } from "@/components/layout/sections/hero";
+import Merkanti from "@/components/layout/sections/merkanti";
 import { PricingSection } from "@/components/layout/sections/pricing";
 import { ServicesSection } from "@/components/layout/sections/services";
 import { SponsorsSection } from "@/components/layout/sections/sponsors";
@@ -46,6 +47,7 @@ export default function Home() {
       <HeroSection />
       {/* <ServicesSection /> */}
       <CourseMaterial />
+      <Merkanti />
       <FAQSection />
       <TestimonialSection />
       <PricingSection />
