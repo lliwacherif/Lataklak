@@ -7,7 +7,7 @@ export default function Merkanti() {
     <div className='w-full container flex flex-col items-center justify-center'>
       <h2
         dir='rtl'
-        className='mb-10 text-3xl text-primary w-11/12 border-2 text-center py-6 rounded border-white '
+        className='mb-10 text-3xl text-primary px-1 lg:px-2 border-2 text-center py-6 rounded border-white '
       >
         بعض من فيديوات الـExpert
       </h2>

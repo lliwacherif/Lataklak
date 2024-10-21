@@ -26,6 +26,24 @@ const HeroSection = () => {
     }
   };
 
+  useEffect(() => {
+    async function sendPageView() {
+      // Trigger the API route for PageView
+      await fetch("/api/facebook-conversion", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          eventName: "PageView",
+          eventData: {
+            emailHash: "",
+          },
+        }),
+      });
+    }
+
+    sendPageView(); // Send PageView event when the page loads
+  }, []);
+
   return (
     <section className='container w-full'>
       <div className='grid place-items-center lg:max-w-screen-xl gap-8 mx-auto py-16 md:py-32'>

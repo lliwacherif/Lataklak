@@ -64,12 +64,15 @@ export default function Navbar() {
           className='rounded-lg w-9 h-9 mr-2 border'
           // className='bg-gradient-to-tr border-secondary from-primary via-primary/70 to-primary rounded-lg w-9 h-9 ml-2 border text-white'
         />
-        Xposure
+        Xposure Masterclass
       </Link>
       {/* <!-- Mobile --> */}
-      <div className='flex flex-col items-center w-4/12 lg:hidden'>
+      <div
+        dir='rtl'
+        className='flex flex-col items-center w-5/12 lg:hidden text-right'
+      >
+        <h2>التخفيض يوفى في :</h2>
         <h2 className='text-2xl text-red-500'> {formatTime(timeLeft)}</h2>
-        <h2>Promotion</h2>
       </div>
 
       {/* <!-- Desktop --> */}
@@ -77,8 +80,10 @@ export default function Navbar() {
         <>
           <NavigationMenu className='hidden  relative left-20 lg:block mx-auto'>
             <h2 className='text-2xl text-red-600'>
-              <span className='text-white'>Fin De La Promotion</span>
-              {formatTime(timeLeft)}
+              {formatTime(timeLeft)}{" "}
+              <span dir='rtl' className='text-white'>
+                التخفيض يوفى في :
+              </span>
             </h2>
           </NavigationMenu>
 

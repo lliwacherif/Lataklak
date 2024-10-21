@@ -243,7 +243,7 @@ const ContactSection = () => {
                           onChange={handleOptionChange}
                           className='mr-4'
                         />
-                        RIB Bancaire
+                        Versement Bancaire
                       </label>
 
                       <label className='flex items-center'>
@@ -259,7 +259,7 @@ const ContactSection = () => {
                     </div>
 
                     {/* Conditional rendering based on selection */}
-                    {selectedOption === "rib" && (
+                    {/* {selectedOption === "rib" && (
                       <p className='text-lg' dir='rtl'>
                         Notre RIB : 04 094179 0079395810 91
                         <br />
@@ -268,7 +268,7 @@ const ContactSection = () => {
                         للحساب الجاري الأتي بإسم محمد علي عمايرة بمبلغ 197
                         دينارا و تواصل معنا على الwhatsapp على الرقم 25251808
                       </p>
-                    )}
+                    )} */}
                     {selectedOption === "cod" && (
                       <p dir='rtl' className='text-md text-white'>
                         {

@@ -58,14 +58,16 @@ export default function CourseMaterial() {
         className='relative min-h-screen flex flex-col justify-center overflow-hidden'
       >
         <div className='w-full max-w-6xl mx-auto px-4 md:px-6 py-24'>
-          <h2
-            dir='rtl'
-            className='text-5xl text-center text-white mb-2 tracking-wider px-3 py-5 border-white rounded border-2 '
-            // style={{ maxWidth: 450, position: "relative", left: 650 }}
-          >
-            {/* Nos Chapitres */}
-            محتوى الـformation
-          </h2>
+          <div className='flex w-full items-center justify-center'>
+            <h2
+              dir='rtl'
+              className='text-5xl text-center lg:w-2/4 text-white mb-2 tracking-wider px-3 py-4 border-white rounded border-2 '
+              // style={{ maxWidth: 450, position: "relative", left: 650 }}
+            >
+              {/* Nos Chapitres */}
+              محتوى الـformation
+            </h2>
+          </div>
           <div className='flex flex-col justify-center divide-y divide-slate-200 [&>*]:py-16'>
             <div className='w-full max-w-3xl mx-auto'>
               {/* <!-- Vertical Timeline #1 --> */}
