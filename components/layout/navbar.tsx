@@ -16,7 +16,7 @@ import Link from "next/link";
 import Image from "next/image";
 import RegisterButton from "../ui/register";
 
-export const Navbar = () => {
+export default function Navbar() {
   // Set the initial countdown time (12 hours = 12 * 60 * 60 seconds)
   const initialTime = 12 * 60 * 60;
   const [timeLeft, setTimeLeft] = useState(initialTime);
@@ -25,7 +25,7 @@ export const Navbar = () => {
 
   const scrollToContact = () => {
     const contactElement = document.getElementById("contact");
-    if (contactElement) {
+    if (contactElement && window) {
       window.scrollTo({
         top: contactElement.offsetTop,
         behavior: "smooth",
@@ -73,7 +73,7 @@ export const Navbar = () => {
       </div>
 
       {/* <!-- Desktop --> */}
-      {!window.location.href.includes("thanks") && (
+      {window && !window.location.href.includes("thanks") && (
         <>
           <NavigationMenu className='hidden  relative left-20 lg:block mx-auto'>
             <h2 className='text-2xl text-red-600'>
@@ -95,4 +95,4 @@ export const Navbar = () => {
       )}
     </header>
   );
-};
+}

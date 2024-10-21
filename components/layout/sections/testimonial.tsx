@@ -77,7 +77,7 @@ Merci encore pour cette excellente formation.`,
   },
 ];
 
-export const TestimonialSection = () => {
+const TestimonialSection = () => {
   return (
     <section id='testimonials' className='container py-24 sm:py-32'>
       <div className='text-center mb-8'>
@@ -152,3 +152,5 @@ export const TestimonialSection = () => {
     </section>
   );
 };
+
+export default TestimonialSection;

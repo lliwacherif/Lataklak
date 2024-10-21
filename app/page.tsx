@@ -1,19 +1,37 @@
-import { BenefitsSection } from "@/components/layout/sections/benefits";
-import { CommunitySection } from "@/components/layout/sections/community";
-import { ContactSection } from "@/components/layout/sections/contact";
-import CourseMaterial from "@/components/layout/sections/courseMaterial";
+import dynamic from "next/dynamic";
 import { FAQSection } from "@/components/layout/sections/faq";
-import { FeaturesSection } from "@/components/layout/sections/features";
-import { FooterSection } from "@/components/layout/sections/footer";
-import { HeroSection } from "@/components/layout/sections/hero";
 import Merkanti from "@/components/layout/sections/merkanti";
-import { PricingSection } from "@/components/layout/sections/pricing";
-import { ServicesSection } from "@/components/layout/sections/services";
-import { SponsorsSection } from "@/components/layout/sections/sponsors";
-import { TeamSection } from "@/components/layout/sections/team";
-import { TestimonialSection } from "@/components/layout/sections/testimonial";
-import FloatingButton from "@/components/ui/FloatingButton";
 
+const CourseMaterial = dynamic(
+  () => import("@/components/layout/sections/courseMaterial"),
+  { ssr: false }
+);
+
+const ContactSection = dynamic(
+  () => import("@/components/layout/sections/contact"),
+  { ssr: false }
+);
+
+const HeroSection = dynamic(() => import("@/components/layout/sections/hero"), {
+  ssr: false,
+});
+const PricingSection = dynamic(
+  () => import("@/components/layout/sections/pricing"),
+  {
+    ssr: false,
+  }
+);
+
+const TestimonialSection = dynamic(
+  () => import("@/components/layout/sections/testimonial"),
+  {
+    ssr: false,
+  }
+);
+
+const FloatingButton = dynamic(() => import("@/components/ui/FloatingButton"), {
+  ssr: false,
+});
 export const metadata = {
   title: "Formation Sponsoring",
   description: "Formation Sponsoring Facebook",

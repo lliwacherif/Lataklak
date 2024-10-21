@@ -96,7 +96,7 @@ export default function CourseMaterial() {
               className='w-5/6 md:w-1/4 font-bold group/arrow '
               onClick={() => {
                 const contactElement = document.getElementById("contact");
-                if (contactElement) {
+                if (contactElement && window) {
                   window.scrollTo({
                     top: contactElement.offsetTop,
                     behavior: "smooth",

@@ -71,7 +71,7 @@ const extractReferrer = (url: string): string | null => {
   return match ? decodeURIComponent(match[1]) : null;
 };
 
-export const ContactSection = () => {
+const ContactSection = () => {
   // State to track which radio option is selected
   const [selectedOption, setSelectedOption] = useState("cod");
 
@@ -289,3 +289,5 @@ export const ContactSection = () => {
     </section>
   );
 };
+
+export default ContactSection;

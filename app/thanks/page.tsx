@@ -45,7 +45,9 @@ const InvoiceComp = () => (
 export default function Thanks() {
   const [showRib, setShowRib] = useState(false);
   useEffect(() => {
-    setShowRib(window.location.href.includes("rib"));
+    if (window) {
+      setShowRib(window.location.href.includes("rib"));
+    }
   }, []);
   return (
     <div>

@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export const HeroSection = () => {
+const HeroSection = () => {
   const { theme } = useTheme();
   const [width, setWidth] = useState(0);
 
@@ -86,3 +86,5 @@ export const HeroSection = () => {
     </section>
   );
 };
+
+export default HeroSection;

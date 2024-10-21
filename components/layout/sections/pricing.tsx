@@ -45,7 +45,7 @@ const plans: PlanProps[] = [
   },
 ];
 
-export const PricingSection = () => {
+const PricingSection = () => {
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
@@ -129,3 +129,5 @@ export const PricingSection = () => {
     </section>
   );
 };
+
+export default PricingSection;

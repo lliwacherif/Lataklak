@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function RegisterButton() {
   const scrollToContact = () => {
     const contactElement = document.getElementById("contact");
-    if (contactElement) {
+    if (contactElement && window) {
       window.scrollTo({
         top: contactElement.offsetTop,
         behavior: "smooth",
