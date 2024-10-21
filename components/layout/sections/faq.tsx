@@ -79,6 +79,7 @@ export const FAQSection = () => {
       </Accordion>
       <h2 dir='rtl' className='text-center my-2 text-lg'>
         في الحالات الكل تنجم ديما تتصل بينا بش تستفسر 
+        <br />
         <span dir='ltr'>25 25 18 08</span>
       </h2>
       <div className='w-full flex items-center justify-center'>

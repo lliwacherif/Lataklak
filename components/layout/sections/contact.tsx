@@ -112,6 +112,7 @@ const ContactSection = () => {
     <section
       id='contact'
       className='container flex items-center justify-center py-24 sm:py-32'
+      style={{ marginTop: -100 }}
     >
       <section
         // className=''
@@ -227,7 +228,7 @@ const ContactSection = () => {
                   />
                 </div>
 
-                <div dir='ltr' className='flex w-full '>
+                <div dir='rtl' className='flex w-full '>
                   <div className='flex flex-1 flex-col items-start justify-start py-8 px-4'>
                     <h2 className='text-2xl mb-4'>
                       اختر طريقة الدفع المناسبة لك
@@ -241,7 +242,7 @@ const ContactSection = () => {
                           value='rib'
                           checked={selectedOption === "rib"}
                           onChange={handleOptionChange}
-                          className='mr-4'
+                          className='ml-4'
                         />
                         Versement Bancaire
                       </label>
@@ -252,23 +253,12 @@ const ContactSection = () => {
                           value='cod'
                           checked={selectedOption === "cod"}
                           onChange={handleOptionChange}
-                          className='mr-4'
+                          className='ml-4'
                         />
                         Paiment à la livraison
                       </label>
                     </div>
 
-                    {/* Conditional rendering based on selection */}
-                    {/* {selectedOption === "rib" && (
-                      <p className='text-lg' dir='rtl'>
-                        Notre RIB : 04 094179 0079395810 91
-                        <br />
-                        <br />
-                        بعد تعمير المعطيات و تأكيد الإشتراك قم بحوالة بنكية
-                        للحساب الجاري الأتي بإسم محمد علي عمايرة بمبلغ 197
-                        دينارا و تواصل معنا على الwhatsapp على الرقم 25251808
-                      </p>
-                    )} */}
                     {selectedOption === "cod" && (
                       <p dir='rtl' className='text-md text-white'>
                         {
@@ -279,8 +269,11 @@ const ContactSection = () => {
                     )}
                   </div>
                 </div>
-
-                <Button className='mt-4'>تأكيد الإشتراك</Button>
+                <div className='flex w-full items-center justify-center'>
+                  <Button className='mt-4 lg:w-1/3 w-8/12'>
+                    تأكيد الإشتراك
+                  </Button>
+                </div>
               </form>
             </Form>
           </CardContent>

@@ -153,12 +153,6 @@ export default function Thanks() {
             مرحبا بيك ونشوفوك في الـmasterclass
           </h2>
         </div>
-        {showRib && (
-          <h2 className='text-center mt-5 text-2xl text-primary'>
-            {" "}
-            Notre RIB : 04 094179 0079395810 91
-          </h2>
-        )}
         <InvoiceComp />
       </div>
     );
@@ -168,8 +162,15 @@ export default function Thanks() {
         <div className='container w-full mt-20 text-center overflow-visible'>
           <h2 className='text-center mt-5 text-2xl text-primary'>
             {" "}
-            Notre RIB : 04 094179 0079395810 91
+            RIB : 04 093 178 0085060952 33 TN <br /> SOCIETE IDEAS STUDIOS{" "}
+            <br /> IBAN: TN59 04093178008506095233 <br />
+            Code Bic: BSTUTNTT
           </h2>
+          <p dir='rtl' className='text-lg mt-3'>
+            كيفاش تعمل بالضبط؟ تمشي لأقرب فرع التجاري تعطيه الـrib الي الفوق
+            وتحط اسم الـمستفيد : IDEAS STUDIO. تاخو الـreçu وتبعثهولنا
+            عالـwhatsapp هذا 25251808 واحنا نبعثولك معطياتك الي تستحقها كل
+          </p>
           <div className='w-full overflow-x-auto'>
             <InvoiceComp />
           </div>
@@ -177,11 +178,6 @@ export default function Thanks() {
           <h2 dir='rtl' className='text-5xl'>
             شكرا على ثيقتك فينا !
           </h2>
-          {!showRib && (
-            <h2 dir='rtl' className='text-3xl mt-16'>
-              خلي تاليفونك بحذاك بش نكلموك على confirmation
-            </h2>
-          )}
 
           <h2 dir='rtl' className='text-3xl mt-4'>
             هذا رابط الـgroup متاعنا الي بش نتعلمو فيه أكثر.

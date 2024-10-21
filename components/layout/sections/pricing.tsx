@@ -45,19 +45,41 @@ const plans: PlanProps[] = [
   },
 ];
 
+const formatTime = (seconds: number) => {
+  const hrs = Math.floor(seconds / 3600);
+  const mins = Math.floor((seconds % 3600) / 60);
+  const secs = seconds % 60;
+  return `${hrs.toString().padStart(2, "0")}:${mins
+    .toString()
+    .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+};
+
 const PricingSection = () => {
+  // Set the initial countdown time (12 hours = 12 * 60 * 60 seconds)
+  const initialTime = 12 * 60 * 60;
+  const [timeLeft, setTimeLeft] = useState(initialTime);
+
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
     setWidth(window.innerWidth);
   }, []);
 
-  return (
-    <section className='container text-left py-24 sm:py-32'>
-      {/* <h2 className='text-lg text-primary text-center mb-2 tracking-wider'>
-        Prix De La Formation
-      </h2> */}
+  useEffect(() => {
+    // Update the countdown every second
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime: any) => (prevTime > 0 ? prevTime - 1 : 0));
+    }, 1000);
 
+    // Cleanup the interval on component unmount
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <section
+      className='container text-left py-24 sm:py-32'
+      style={{ marginTop: -100 }}
+    >
       <h2
         dir='rtl'
         className='text-4xl font-bold text-white text-center mb-2 tracking-wider'
@@ -68,8 +90,9 @@ const PricingSection = () => {
       <h2 className='text-3xl md:text-4xl text-center  mb-4'>Accès à vie</h2>
 
       <h3 className='md:w-1/2 mx-auto text-xl text-center text-muted-foreground pb-14'>
-        Un paiement unique pour accéder à des connaissances transformatives,
-        pour toute la vie.
+        <span>التخفيض يوفى بعد</span>
+        <br />
+        <h2 className='text-2xl text-red-500'> {formatTime(timeLeft)}</h2>
       </h3>
 
       <div className='flex items-center justify-center'>
@@ -112,12 +135,12 @@ const PricingSection = () => {
                 </div>
               </CardContent>
 
-              <CardFooter>
+              <CardFooter className='flex items-center justify-center'>
                 <Button
                   variant={
                     popular === PopularPlan?.YES ? "default" : "secondary"
                   }
-                  className='w-full'
+                  className='w-full lg:w-1/3'
                 >
                   <Link href='#contact'>{buttonText}</Link>
                 </Button>

@@ -56,6 +56,7 @@ export default function CourseMaterial() {
       <section
         id='chapters'
         className='relative min-h-screen flex flex-col justify-center overflow-hidden'
+        style={{ marginTop: -100 }}
       >
         <div className='w-full max-w-6xl mx-auto px-4 md:px-6 py-24'>
           <div className='flex w-full items-center justify-center'>
