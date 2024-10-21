@@ -1,6 +1,6 @@
 "use client";
-import { ChevronsDown, Github, Menu } from "lucide-react";
-import React from "react";
+import { ArrowLeft, ChevronsDown, Menu } from "lucide-react";
+import React, { useEffect, useState } from "react";
 import {
   Sheet,
   SheetContent,
@@ -10,52 +10,51 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 import { Separator } from "../ui/separator";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "../ui/navigation-menu";
+import { NavigationMenu } from "../ui/navigation-menu";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { ToggleTheme } from "./toogle-theme";
-
-interface RouteProps {
-  href: string;
-  label: string;
-}
-
-interface FeatureProps {
-  title: string;
-  description: string;
-}
-
-// const routeList: RouteProps[] = [
-//   {
-//     href: "#team",
-//     label: "Team",
-//   },
-//   // {
-//   //   href: "#contact",
-//   //   label: "سجل الآن",
-//   // },
-//   {
-//     href: "#faq",
-//     label: "أسئلتكم",
-//   },
-//   {
-//     href: "#testimonials",
-//     label: "شهاداتكم",
-//   },
-// ];
+import RegisterButton from "../ui/register";
 
 export const Navbar = () => {
+  // Set the initial countdown time (12 hours = 12 * 60 * 60 seconds)
+  const initialTime = 12 * 60 * 60;
+  const [timeLeft, setTimeLeft] = useState(initialTime);
+
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const scrollToContact = () => {
+    const contactElement = document.getElementById("contact");
+    if (contactElement) {
+      window.scrollTo({
+        top: contactElement.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    // Update the countdown every second
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime: any) => (prevTime > 0 ? prevTime - 1 : 0));
+    }, 1000);
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(timer);
+  }, []);
+
+  // Function to format the time into HH:MM:SS
+  const formatTime = (seconds: number) => {
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    return `${hrs.toString().padStart(2, "0")}:${mins
+      .toString()
+      .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  };
+
   return (
-    <header className='shadow-inner bg-opacity-15 w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-screen-xl top-5 mx-auto relative border border-secondary z-40 rounded-2xl flex justify-between items-center p-2 bg-card'>
+    <header className='shadow-inner bg-opacity-15 w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-screen-xl top-5 mx-auto sticky border border-secondary z-40 rounded-2xl flex justify-between items-center p-2 bg-card'>
       <Link href='/' className='font-bold text-lg flex items-center'>
         <Image
           src='/logo.jpg'
@@ -68,78 +67,32 @@ export const Navbar = () => {
         Xposure
       </Link>
       {/* <!-- Mobile --> */}
-      <div className='flex items-center lg:hidden'>
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild>
-            <Menu
-              onClick={() => setIsOpen(!isOpen)}
-              className='cursor-pointer lg:hidden'
-            />
-          </SheetTrigger>
-
-          <SheetContent
-            side='left'
-            className='flex flex-col justify-between rounded-tr-2xl rounded-br-2xl bg-card border-secondary'
-          >
-            <div>
-              <SheetHeader className='mb-4 ml-4'>
-                <SheetTitle className='flex items-center'>
-                  <Link href='/' className='flex items-center'>
-                    <Image
-                      src='/logo.jpg'
-                      alt='Xposure'
-                      width={"34"}
-                      height={"34"}
-                      className='rounded-lg w-9 h-9 mr-2 border'
-                      // className='bg-gradient-to-tr border-secondary from-primary via-primary/70 to-primary rounded-lg w-9 h-9 ml-2 border text-white'
-                    />
-                    Xposure
-                  </Link>
-                </SheetTitle>
-              </SheetHeader>
-
-              {/* <div className='flex flex-col gap-2'>
-                {routeList.map(({ href, label }) => (
-                  <Button
-                    key={href}
-                    onClick={() => setIsOpen(false)}
-                    asChild
-                    variant='ghost'
-                    className='justify-start bg-gray-500 p-2 text-base'
-                  >
-                    <Link href={href}>{label}</Link>
-                  </Button>
-                ))}
-              </div>*/}
-            </div>
-
-            <SheetFooter className='flex-col sm:flex-col justify-start items-start'>
-              <Separator className='mb-2' />
-
-              <ToggleTheme />
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>
+      <div className='flex flex-col items-center w-4/12 lg:hidden'>
+        <h2 className='text-2xl text-red-500'> {formatTime(timeLeft)}</h2>
+        <h2>Promotion</h2>
       </div>
 
       {/* <!-- Desktop --> */}
-      <NavigationMenu className='hidden lg:block mx-auto'>
-        {/* <NavigationMenuList>
-          <NavigationMenuItem>
-            {routeList.map(({ href, label }) => (
-              <NavigationMenuLink key={href} asChild>
-                <Link href={href} className='text-base px-2'>
-                  {label}
-                </Link>
-              </NavigationMenuLink>
-            ))}
-          </NavigationMenuItem>
-        </NavigationMenuList> */}
-      </NavigationMenu>
+      {!window.location.href.includes("thanks") && (
+        <>
+          <NavigationMenu className='hidden  relative left-20 lg:block mx-auto'>
+            <h2 className='text-2xl text-red-600'>
+              <span className='text-white'>Fin De La Promotion</span>
+              {formatTime(timeLeft)}
+            </h2>
+          </NavigationMenu>
 
-      <div className='hidden lg:flex'>
-        <ToggleTheme />
-      </div>
+          <div className='hidden justify-end w-3/12 lg:flex'>
+            <Button
+              className='w-full md:w-2/4 font-bold group/arrow '
+              onClick={scrollToContact}
+            >
+              <ArrowLeft className='size-5 mr-2 group-hover/arrow:translate-x-1 transition-transform' />
+              اشترك معنا
+            </Button>
+          </div>
+        </>
+      )}
     </header>
   );
 };

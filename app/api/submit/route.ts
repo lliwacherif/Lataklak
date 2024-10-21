@@ -5,7 +5,16 @@ import axios from "axios";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, phone, email, adress, occupation, city, referrer } = body;
+    const {
+      name,
+      phone,
+      email,
+      adress,
+      occupation,
+      city,
+      referrer,
+      selectedOption,
+    } = body;
 
     const req = await axios.post(
       "https://n8n.lataklak.tn/webhook/09835f9a-8232-462f-b9d8-5246b00058cc",
@@ -17,6 +26,7 @@ export async function POST(request: Request) {
         job: occupation,
         city,
         referral: referrer,
+        method: selectedOption,
       }
     );
     // Send a success response

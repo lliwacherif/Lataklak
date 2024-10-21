@@ -1,10 +1,5 @@
 "use client";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Building2, Clock, Mail, Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -27,8 +22,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const tunisianGovernorates = [
   "Ariana",
@@ -57,12 +52,17 @@ const tunisianGovernorates = [
 ];
 
 const formSchema = z.object({
-  name: z.string().min(2).max(255),
-  phone: z.string().min(8).max(12),
-  email: z.string().email(),
-  adress: z.string().min(2).max(255),
-  occupation: z.string().min(2).max(255),
-  city: z.string().min(2).max(255),
+  name: z
+    .string()
+    .min(2, { message: "لازم الاسم يكون فيه أكثر من زوز حروف" })
+    .max(255),
+  phone: z.string().min(8, {
+    message: "لازم الرقم يكون 8 أرقام على الأقل",
+  }),
+  email: z.string().email({ message: "ثبت من الـemail " }),
+  adress: z.string().min(2, { message: "حظ العنوان كامل" }).max(255),
+  // occupation: z.string().min(2).max(255),
+  city: z.string().min(2, { message: "اختار الولاية" }).max(255),
 });
 
 const extractReferrer = (url: string): string | null => {
@@ -72,6 +72,14 @@ const extractReferrer = (url: string): string | null => {
 };
 
 export const ContactSection = () => {
+  // State to track which radio option is selected
+  const [selectedOption, setSelectedOption] = useState("cod");
+
+  // Handle radio button change
+  const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedOption(event.target.value);
+  };
+
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -79,20 +87,24 @@ export const ContactSection = () => {
       name: "",
       phone: "",
       email: "",
-      adress: "Tunis Centre Ville",
-      occupation: "",
+      adress: "",
       city: "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const { name, phone, email, adress, occupation, city } = values;
+    const { name, phone, email, adress, city } = values;
     const referrer = extractReferrer(window.location.href);
     console.log(referrer);
-    const req = await axios.post(`/api/submit`, { ...values, referrer });
+    const req = await axios.post(`/api/submit`, {
+      ...values,
+      occupation: "",
+      selectedOption,
+      referrer,
+    });
 
     if (req.status == 200) {
-      router.push("/thanks");
+      router.push(`/thanks?method=${selectedOption}`);
     }
   }
 
@@ -103,26 +115,27 @@ export const ContactSection = () => {
     >
       <section
         // className=''
-        className='lg:w-4/6 '
+        className='lg:w-4/6 w-full '
       >
         <div>
           <div className='mb-4'>
-            <h2 className='text-lg text-primary mb-2 tracking-wider'>
+            {/* <h2 className='text-lg text-primary mb-2 tracking-wider'>
               Rejoignez nous
-            </h2>
-            <h2 className='text-3xl text-right md:text-4xl font-bold'>
+            </h2> */}
+            <h2 className='text-3xl text-center md:text-4xl font-bold'>
               سجل معنا
             </h2>
           </div>
         </div>
 
-        <Card className='bg-muted/60 dark:bg-card'>
+        <Card className='bg-muted/60 dark:bg-card w-full'>
           <CardHeader className='text-primary text-2xl'> </CardHeader>
           <CardContent>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
                 className='grid w-full gap-4'
+                dir='rtl'
               >
                 <div className='flex flex-col md:!flex-row gap-8'>
                   <FormField
@@ -130,9 +143,9 @@ export const ContactSection = () => {
                     name='name'
                     render={({ field }) => (
                       <FormItem className='w-full'>
-                        <FormLabel>Nom</FormLabel>
+                        <FormLabel>الإسم واللقب</FormLabel>
                         <FormControl>
-                          <Input placeholder='Foulen Fouleni' {...field} />
+                          <Input placeholder='' {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -143,13 +156,9 @@ export const ContactSection = () => {
                     name='phone'
                     render={({ field }) => (
                       <FormItem className='w-full'>
-                        <FormLabel>Numéro De Téléphone</FormLabel>
+                        <FormLabel>رقم الهاتف</FormLabel>
                         <FormControl>
-                          <Input
-                            type='number'
-                            placeholder='99999999'
-                            {...field}
-                          />
+                          <Input type='number' placeholder='' {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -163,67 +172,29 @@ export const ContactSection = () => {
                     name='email'
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel>الـemail</FormLabel>
                         <FormControl>
-                          <Input
-                            type='email'
-                            placeholder='leomirandadev@gmail.com'
-                            {...field}
-                          />
+                          <Input type='email' placeholder='' {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
-
-                <div className='flex flex-col gap-1.5'>
-                  <FormField
-                    control={form.control}
-                    name='occupation'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Occupation</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder='Occupation' />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value='Freelancer'>
-                              Freelancer
-                            </SelectItem>
-                            <SelectItem value='Chef De projet'>
-                              Chef De Projet
-                            </SelectItem>
-                            <SelectItem value='Employé'>Employé</SelectItem>
-                            <SelectItem value='Etudiant'>Etudiant</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
                 <div className='flex flex-col gap-1.5'>
                   <FormField
                     control={form.control}
                     name='city'
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Gouvernerat</FormLabel>
+                        <FormLabel>الولاية</FormLabel>
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
-                          <FormControl>
+                          <FormControl dir='rtl'>
                             <SelectTrigger>
-                              <SelectValue placeholder='Gouvernerat' />
+                              <SelectValue placeholder='الولاية' />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
@@ -246,25 +217,73 @@ export const ContactSection = () => {
                     name='adress'
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Adresse</FormLabel>
+                        <FormLabel>العنوان الكامل</FormLabel>
                         <FormControl>
-                          <Input
-                            type='text'
-                            placeholder='Tunis, Centre Ville'
-                            {...field}
-                          />
+                          <Input type='text' placeholder='' {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
-                <Button className='mt-4'>Register</Button>
+
+                <div dir='ltr' className='flex w-full '>
+                  <div className='flex flex-1 flex-col items-start justify-start py-8 px-4'>
+                    <h2 className='text-2xl mb-4'>
+                      اختر طريقة الدفع المناسبة لك
+                    </h2>
+
+                    {/* Radio buttons */}
+                    <div className='flex flex-col gap-4 mb-4'>
+                      <label className='flex items-center'>
+                        <input
+                          type='radio'
+                          value='rib'
+                          checked={selectedOption === "rib"}
+                          onChange={handleOptionChange}
+                          className='mr-4'
+                        />
+                        RIB Bancaire
+                      </label>
+
+                      <label className='flex items-center'>
+                        <input
+                          type='radio'
+                          value='cod'
+                          checked={selectedOption === "cod"}
+                          onChange={handleOptionChange}
+                          className='mr-4'
+                        />
+                        Paiment à la livraison
+                      </label>
+                    </div>
+
+                    {/* Conditional rendering based on selection */}
+                    {selectedOption === "rib" && (
+                      <p className='text-lg' dir='rtl'>
+                        Notre RIB : 04 094179 0079395810 91
+                        <br />
+                        <br />
+                        بعد تعمير المعطيات و تأكيد الإشتراك قم بحوالة بنكية
+                        للحساب الجاري الأتي بإسم محمد علي عمايرة بمبلغ 197
+                        دينارا و تواصل معنا على الwhatsapp على الرقم 25251808
+                      </p>
+                    )}
+                    {selectedOption === "cod" && (
+                      <p dir='rtl' className='text-md text-white'>
+                        {
+                          "يجيك livreur لباب الدار يعطيك ورقة فيها معطيات حسابك كل (الـadresse والـmot de passe) وحتى الـlien متاع الـplatform الي بش تقرا فيها."
+                        }{" "}
+                        فقط عمر المعطيات و أكد الإشتراك{" "}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <Button className='mt-4'>تأكيد الإشتراك</Button>
               </form>
             </Form>
           </CardContent>
-
-          <CardFooter></CardFooter>
         </Card>
       </section>
     </section>

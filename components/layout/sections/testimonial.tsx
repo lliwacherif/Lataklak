@@ -24,11 +24,13 @@ interface ReviewProps {
   userName: string;
   comment: string;
   rating: number;
+  avatar?: string;
 }
 
 const reviewList: ReviewProps[] = [
   {
     image: "",
+    avatar: "/sadok.jpg",
     name: "Sadok B'z",
     userName: `E-commerçant tunisien`,
     comment: `J’ai eu l’honneur de participer à votre formation sur le thème de la publicité facebook
@@ -57,36 +59,45 @@ Juste après la formation, en appliquant ce que j'ai appris, j'ai lancé seuleme
   },
   {
     image: "/test4.png",
+    avatar: "/user3.jpg",
     name: "Boutheina Tounsi",
     userName: ``,
     comment: ``,
     rating: 4.8,
   },
-  // {
-  //   image: "/test5.png",
-  //   name: "Amal Khlif",
-  //   userName: ``,
-  //   comment: ``,
-  //   rating: 4.8,
-  // },
+  {
+    image: "",
+    avatar: "/amal.jpg",
+    name: "Amal Khlif",
+    userName: ``,
+    comment: `Je tenais à vous faire part de mon retour sur la formation . J'ai trouvé le contenu clair, satisfaisant et très bien structuré. Les explications étaient simples à comprendre et directement applicables.
+Maintenant, j'ai hâte de passer aux tests et de voir les résultats ! Je vous tiendrai au courant 😉
+Merci encore pour cette excellente formation.`,
+    rating: 4.8,
+  },
 ];
 
 export const TestimonialSection = () => {
   return (
     <section id='testimonials' className='container py-24 sm:py-32'>
       <div className='text-center mb-8'>
-        <h2 className='text-lg text-primary text-center mb-2 tracking-wider'>
+        {/* <h2 className='text-lg text-primary text-center mb-2 tracking-wider'>
           Témoignages
-        </h2>
+        </h2> */}
 
-        <h2 className='text-3xl md:text-4xl text-center font-bold mb-4'>
-          les avis de nos étudiants
+        <h2
+          dir='rtl'
+          className='text-3xl md:text-4xl text-center font-bold mb-4'
+        >
+          آراء بعض من تلامذتنا
         </h2>
       </div>
 
       <Carousel
         opts={{
-          align: "start",
+          align: "end",
+          startIndex: window.innerWidth >= 720 ? 1 : 2,
+          loop: true,
         }}
         className='relative w-[80%] sm:w-[90%] lg:max-w-screen-xl mx-auto'
       >
@@ -95,7 +106,7 @@ export const TestimonialSection = () => {
             <CarouselItem
               key={review.name}
               className='md:basis-1/2 lg:basis-1/3'
-              dir={"rtl"}
+              // dir={"rtl"}
             >
               <Card className='bg-muted/50 dark:bg-card'>
                 <CardContent className='pt-6 pb-0'>
@@ -116,7 +127,9 @@ export const TestimonialSection = () => {
                 <CardHeader>
                   <div className='flex flex-row items-center gap-4'>
                     <Avatar>
-                      <AvatarImage src='' alt='radix' />
+                      {review.avatar && (
+                        <AvatarImage src={review.avatar} alt='radix' />
+                      )}
                       <AvatarFallback>{review.name[0]}</AvatarFallback>
                     </Avatar>
 

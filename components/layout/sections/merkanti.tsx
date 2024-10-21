@@ -5,8 +5,11 @@ import { InstagramEmbed } from "react-social-media-embed";
 export default function Merkanti() {
   return (
     <div className='w-full container flex flex-col items-center justify-center'>
-      <h2 className='mb-10 text-2xl text-primary '>
-        Notre Formateur Sur instagram
+      <h2
+        dir='rtl'
+        className='mb-10 text-3xl text-primary w-11/12 border-2 text-center py-6 rounded border-white '
+      >
+        بعض من فيديوات الـExpert
       </h2>
       <div className='flex justify-center lg:flex-row flex-col '>
         <InstagramEmbed

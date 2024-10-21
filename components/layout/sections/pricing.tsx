@@ -33,14 +33,14 @@ const plans: PlanProps[] = [
     title: "ثمن الإشتراك",
     popular: 1,
     price: 197,
-    description: "تخفيض لمدة محدودة و عدد معين من المشتركين",
-    buttonText: "S'inscrire",
+    description: "",
+    buttonText: "اشترك معنا",
     benefitList: [
-      "إشتراك مدى الحياة",
-      "مجموعة Facebook خاصة",
-      "محتوى متجدد",
-      "كثر من 18 درس",
-      "من الصفر إلى الإحتراف",
+      "اشتراك مدى الحياة",
+      "فيديوات بالتونسي",
+      "أكثر من 17 درس",
+      "أمثلة تطبيقية",
+      "مجموعة خاصة عالـFacebook",
     ],
   },
 ];
@@ -54,13 +54,18 @@ export const PricingSection = () => {
 
   return (
     <section className='container text-left py-24 sm:py-32'>
-      <h2 className='text-lg text-primary text-center mb-2 tracking-wider'>
+      {/* <h2 className='text-lg text-primary text-center mb-2 tracking-wider'>
         Prix De La Formation
+      </h2> */}
+
+      <h2
+        dir='rtl'
+        className='text-4xl font-bold text-white text-center mb-2 tracking-wider'
+      >
+        تخلصنا مرة وحدة!
       </h2>
 
-      <h2 className='text-3xl md:text-4xl text-center font-bold mb-4'>
-        Accès à vie
-      </h2>
+      <h2 className='text-3xl md:text-4xl text-center  mb-4'>Accès à vie</h2>
 
       <h3 className='md:w-1/2 mx-auto text-xl text-center text-muted-foreground pb-14'>
         Un paiement unique pour accéder à des connaissances transformatives,

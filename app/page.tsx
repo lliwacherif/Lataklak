@@ -12,15 +12,16 @@ import { ServicesSection } from "@/components/layout/sections/services";
 import { SponsorsSection } from "@/components/layout/sections/sponsors";
 import { TeamSection } from "@/components/layout/sections/team";
 import { TestimonialSection } from "@/components/layout/sections/testimonial";
+import FloatingButton from "@/components/ui/FloatingButton";
 
 export const metadata = {
   title: "Formation Sponsoring",
-  description: "Free Shadcn landing page for developers",
+  description: "Formation Sponsoring Facebook",
   openGraph: {
     type: "website",
-    url: "https://github.com/nobruf/shadcn-landing-page.git",
+    // url: "https://github.com/nobruf/shadcn-landing-page.git",
     title: "Formation Sponsoring",
-    description: "Free Shadcn landing page for developers",
+    description: "Formation Sponsoring Tunisie",
     images: [
       {
         url: "https://res.cloudinary.com/dbzv9xfjp/image/upload/v1723499276/og-images/shadcn-vue.jpg",
@@ -45,22 +46,13 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      {/* <ServicesSection /> */}
-      <CourseMaterial />
+      <TestimonialSection />
       <Merkanti />
       <FAQSection />
-      <TestimonialSection />
+      <CourseMaterial />
       <PricingSection />
       <ContactSection />
-
-      {/*<FeaturesSection />
-      <ServicesSection />
-      <TestimonialSection />
-      <TeamSection />
-      <CommunitySection />
-      <ContactSection />
-      <FAQSection />
-      <FooterSection /> */}
+      <FloatingButton />
     </>
   );
 }

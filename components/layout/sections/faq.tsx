@@ -23,10 +23,16 @@ const FAQList: FAQProps[] = [
     value: "item-1",
   },
   {
-    question: "علاش فيديوهات مسجلة ؟",
+    question: "علاش اخترنا فيديوهات مسجلة؟",
     answer:
       "على خاطر وقتك ثمين تنجم تقرى الدورة متاعنا فين متحب ووقت متحب و تعاودها قد متحب",
     value: "item-2",
+  },
+  {
+    question: "شنو نعمل كان ما نفهمش حاجة في الـformation ؟",
+    answer:
+      "أي مشترك معانا في الـformation نعطيوه إشتراك مجاني لـgroup في الفيسبوك وين ينجم يستفسر على أي معلومة عندها علاقة بالدرس.",
+    value: "item-2.5",
   },
   {
     question: "قداش مدة الدورة ؟",
@@ -36,14 +42,13 @@ const FAQList: FAQProps[] = [
   },
   {
     question: "كيفاش طريقة الخلاص ؟",
-    answer:
-      "تسجل معانا، نكلموك نتأكدو معاك ثم نبعثولك وصل الخلاص و معاهم ورقة فيها معلومات الوصول للمنصة متاعنا و تخلص من دارك cash",
+    answer: "تنجم تخلصنا بالـrib bancaire ولا نوصلولك لباب الدار",
     value: "item-4",
   },
   {
-    question: "نجم نخلص online ؟",
+    question: "كيفاش توصلولي لباب الدار؟",
     answer:
-      "أي تنجم تخلص من دارك فقط وقت نكلموك على التأكيد إختار خاصية الخلاص online و نحنا نتكفلو بالبقية",
+      "يجيك livreur لباب الدار يعطيك ورقة فيها معطيات حسابك كل (الـadresse والـmot de passe) وحتى الـlien متاع الـplatform الي بش تقرا فيها.",
     value: "item-5",
   },
 ];
@@ -52,9 +57,9 @@ export const FAQSection = () => {
   return (
     <section id='faq' className='container md:w-[700px] py-24 sm:py-32'>
       <div className='text-center mb-8'>
-        <h2 className='text-lg text-primary text-center mb-2 tracking-wider'>
+        {/* <h2 className='text-lg text-primary text-center mb-2 tracking-wider'>
           FAQS
-        </h2>
+        </h2> */}
 
         <h2 className='text-3xl md:text-4xl text-center font-bold'>
           الأسئلة اللي ديما تطرحوها
@@ -64,7 +69,7 @@ export const FAQSection = () => {
       <Accordion type='single' collapsible className='AccordionRoot'>
         {FAQList.map(({ question, answer, value }) => (
           <AccordionItem dir='rtl' key={value} value={value}>
-            <AccordionTrigger className='text-left'>
+            <AccordionTrigger className='text-right'>
               {question}
             </AccordionTrigger>
 
@@ -72,6 +77,9 @@ export const FAQSection = () => {
           </AccordionItem>
         ))}
       </Accordion>
+      <h2 dir='rtl' className='text-center my-2 text-lg'>
+        في الحالات الكل تنجم ديما تتصل بينا بش تستفسر (25251808)
+      </h2>
       <div className='w-full flex items-center justify-center'>
         <RegisterButton />
       </div>
