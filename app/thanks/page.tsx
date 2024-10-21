@@ -161,15 +161,20 @@ export default function Thanks() {
       <div>
         <div className='container w-full mt-20 text-center overflow-visible'>
           <h2 className='text-center mt-5 text-2xl text-primary'>
-            {" "}
             RIB : 04 093 178 0085060952 33 TN <br /> SOCIETE IDEAS STUDIOS{" "}
-            <br /> IBAN: TN59 04093178008506095233 <br />
-            Code Bic: BSTUTNTT
           </h2>
-          <p dir='rtl' className='text-lg mt-3'>
-            كيفاش تعمل بالضبط؟ تمشي لأقرب فرع التجاري تعطيه الـrib الي الفوق
-            وتحط اسم الـمستفيد : IDEAS STUDIO. تاخو الـreçu وتبعثهولنا
-            عالـwhatsapp هذا 25251808 واحنا نبعثولك معطياتك الي تستحقها كل
+          <p
+            dir='rtl'
+            className='text-lg mt-3 lg:flex lg:items-center lg:justify-center lg:flex-col'
+          >
+            <span className='text-2xl font-bold'>كيفاش تعمل بالضبط؟</span>
+            <br />
+            <ol className='list-decimal  lg:w-1/3 text-right'>
+              <li>تمشي لأقرب فرع التجاري تعطيه الـrib الي الفوق </li>
+              <li>تحط اسم الـمستفيد : IDEAS STUDIO</li>
+              <li>تاخو الـreçu وتبعثهولنا عالـwhatsapp هذا 25251808</li>
+              <li>احنا نبعثولك معطياتك الي تستحقها كل.</li>
+            </ol>
           </p>
           <div className='w-full overflow-x-auto'>
             <InvoiceComp />

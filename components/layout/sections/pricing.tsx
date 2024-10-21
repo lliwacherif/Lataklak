@@ -116,7 +116,7 @@ const PricingSection = () => {
                   {description}
                 </CardDescription>
 
-                <div className='text-center'>
+                <div className='text-center' style={{ scale: 1.45 }}>
                   <span className='text-3xl font-bold flex flex-col justify-center '>
                     <span className='text-green-500'>197 TND</span>
                     <del className='text-lg text-red-500'>247 TND</del>
